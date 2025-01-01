@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "clear && tsc --outDir dist && node dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc --outDir dist",
-    "dev": "ts-node src/index.ts"
+    "dev": "ts-node src/app.ts"
   },
   "keywords": [],
   "author": "",
@@ -17,5 +17,8 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "telegraf": "^4.16.3"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0"
   }
 }
