@@ -1,7 +1,8 @@
 import express from "express";
-import dotenv from "dotenv";
+import { config } from "dotenv";
+config();
 
-dotenv.config();
+import "./bot/bot";
 
 const PORT = process.env.PORT || 5000;
 
