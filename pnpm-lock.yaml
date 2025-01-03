@@ -17,6 +17,15 @@ importers:
       express:
         specifier: ^4.21.2
         version: 4.21.2
+      i18next:
+        specifier: ^24.2.0
+        version: 24.2.0
+      i18next-fs-backend:
+        specifier: ^2.6.0
+        version: 2.6.0
+      i18next-http-middleware:
+        specifier: ^3.7.1
+        version: 3.7.1
       telegraf:
         specifier: ^4.16.3
         version: 4.16.3
@@ -26,6 +35,10 @@ importers:
         version: 5.0.0
 
 packages:
+
+  '@babel/runtime@7.26.0':
+    resolution: {integrity: sha512-FDSOghenHTiToteC/QRlv2q3DhPZ/oOXTBoirfWNx1Cx3TMVcGWQtMMmQcSvb/JjpNeGzx8Pq/b4fKEJuWm1sw==}
+    engines: {node: '>=6.9.0'}
 
   '@telegraf/types@7.1.0':
     resolution: {integrity: sha512-kGevOIbpMcIlCDeorKGpwZmdH7kHbqlk/Yj6dEpJMKEQw5lk0KVQY0OLXaCswy8GqlIVLd5625OB+rAntP9xVw==}
@@ -247,6 +260,20 @@ packages:
     resolution: {integrity: sha512-FtwrG/euBzaEjYeRqOgly7G0qviiXoJWnvEH2Z1plBdXgbyjv34pHTSb9zoeHMyDy33+DWy5Wt9Wo+TURtOYSQ==}
     engines: {node: '>= 0.8'}
 
+  i18next-fs-backend@2.6.0:
+    resolution: {integrity: sha512-3ZlhNoF9yxnM8pa8bWp5120/Ob6t4lVl1l/tbLmkml/ei3ud8IWySCHt2lrY5xWRlSU5D9IV2sm5bEbGuTqwTw==}
+
+  i18next-http-middleware@3.7.1:
+    resolution: {integrity: sha512-nVTSGB1P4Gad5PFQYf3xVUOzJ4tVSQYD8Rs0luyWkjEMwqdqAcZ9CqIzqYwVLgB5/BKr1COI0oAei5dlYzmGbg==}
+
+  i18next@24.2.0:
+    resolution: {integrity: sha512-ArJJTS1lV6lgKH7yEf4EpgNZ7+THl7bsGxxougPYiXRTJ/Fe1j08/TBpV9QsXCIYVfdE/HWG/xLezJ5DOlfBOA==}
+    peerDependencies:
+      typescript: ^5
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
   iconv-lite@0.4.24:
     resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
     engines: {node: '>=0.10.0'}
@@ -347,6 +374,9 @@ packages:
     resolution: {integrity: sha512-8zGqypfENjCIqGhgXToC8aB2r7YrBX+AQAfIPs/Mlk+BtPTztOvTS01NRW/3Eh60J+a48lt8qsCzirQ6loCVfA==}
     engines: {node: '>= 0.8'}
 
+  regenerator-runtime@0.14.1:
+    resolution: {integrity: sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==}
+
   safe-buffer@5.2.1:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
 
@@ -429,6 +459,10 @@ packages:
     resolution: {integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==}
 
 snapshots:
+
+  '@babel/runtime@7.26.0':
+    dependencies:
+      regenerator-runtime: 0.14.1
 
   '@telegraf/types@7.1.0': {}
 
@@ -684,6 +718,14 @@ snapshots:
       statuses: 2.0.1
       toidentifier: 1.0.1
 
+  i18next-fs-backend@2.6.0: {}
+
+  i18next-http-middleware@3.7.1: {}
+
+  i18next@24.2.0:
+    dependencies:
+      '@babel/runtime': 7.26.0
+
   iconv-lite@0.4.24:
     dependencies:
       safer-buffer: 2.1.2
@@ -751,6 +793,8 @@ snapshots:
       http-errors: 2.0.0
       iconv-lite: 0.4.24
       unpipe: 1.0.0
+
+  regenerator-runtime@0.14.1: {}
 
   safe-buffer@5.2.1: {}
 

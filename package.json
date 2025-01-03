@@ -16,6 +16,9 @@
     "axios": "^1.7.9",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "i18next": "^24.2.0",
+    "i18next-fs-backend": "^2.6.0",
+    "i18next-http-middleware": "^3.7.1",
     "telegraf": "^4.16.3"
   },
   "devDependencies": {

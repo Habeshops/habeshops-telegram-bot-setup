@@ -1,13 +1,38 @@
 import express from "express";
+import path from "path";
+import i18next from "i18next";
+import Backend from "i18next-fs-backend";
+import middleware from "i18next-http-middleware";
 import { config } from "dotenv";
 config();
 
-import "./bot/bot";
+i18next
+  .use(Backend)
+  .use(middleware.LanguageDetector)
+  .init({
+    backend: {
+      loadPath: path.join(
+        process.cwd(),
+        "src/locales",
+        "{{lng}}",
+        "{{ns}}.json"
+      ),
+    },
+    detection: {
+      order: ["querystring", "cookie"],
+      caches: ["cookie"],
+    },
+    fallbackLng: "en",
+    preload: ["en", "am"],
+  });
 
 const PORT = process.env.PORT || 5000;
 
 const app = express();
 app.use(express.json());
+app.use(middleware.handle(i18next));
+
+import "./bot/bot";
 
 app.use("/", (_, res) => {
   res.send(
@@ -15,9 +40,8 @@ app.use("/", (_, res) => {
   );
 });
 
-app
-  .listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-  })
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 
 export default app;

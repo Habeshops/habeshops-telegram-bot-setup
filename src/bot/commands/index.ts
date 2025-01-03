@@ -1,4 +1,6 @@
 import { bot } from "../bot";
+import { helpCommand } from "./help";
 import { startCommand } from "./start";
 
-bot.command("start", startCommand);
+bot.start(startCommand);
+bot.help(helpCommand)
