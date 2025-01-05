@@ -1,3 +1,5 @@
 {
-  "welcome_message": "እንኳን ወደ Habeshops Telegram bot API በደህና መጡ።"
+  "welcome": {
+    "message": "ለ Habeshops Telegram ቦት API እንኳን ደህና መጡ ፣ የተጠቃሚዎችን ቦቶች ለመቀየርና ለመመዝገብ ይጠቅማል።"
+  }
 }
