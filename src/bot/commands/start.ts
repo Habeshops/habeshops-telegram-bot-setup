@@ -16,7 +16,7 @@ export const startCommand = async (ctx: Context) => {
     return await ctx.reply(rejectionMessage);
   }
 
-  const welcomeMessage = i18next.t("welcome.user", {
+  const welcomeMessage = i18next.t("welcome.message", {
     lng: ctx.from?.language_code || defaultLang,
     user_name: ctx.from?.username || ctx.from?.first_name || "New User",
     support_address: supportAddress,

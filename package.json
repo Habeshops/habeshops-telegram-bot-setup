@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "clear && tsc --outDir dist && node dist/app.js",
+    "bot": "clear && tsc --outDir dist && node dist/bot/bot.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc --outDir dist",
     "dev": "ts-node src/app.ts"
