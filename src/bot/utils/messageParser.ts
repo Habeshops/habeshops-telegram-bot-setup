@@ -5,7 +5,6 @@
  */
 export const messageParser = (text: string): string => {
   const escapeChars = [
-    "\\",
     "[",
     "]",
     "(",
