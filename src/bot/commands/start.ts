@@ -22,7 +22,7 @@ export const startCommand = async (bot: TelegramBot, msg: Message) => {
     return await bot.sendMessage(msg.chat.id, rejectionMessage);
   } else if (
     msg.from?.username &&
-    (await checkIfTheUserIsBanned(backend, msg.from.username))
+    !(await checkIfTheUserIsBanned(backend, msg.from.username))
   ) {
     const rejectionMessage = i18next.t("welcome.banned", {
       lng: msg.from?.language_code || defaultLang,
