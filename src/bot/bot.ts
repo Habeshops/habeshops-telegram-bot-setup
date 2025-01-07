@@ -1,4 +1,4 @@
-import { Context, Telegraf } from "telegraf";
+import TelegramBot from "node-telegram-bot-api";
 
 const token = process.env.BOT_TOKEN;
 
@@ -6,11 +6,6 @@ if (!token) {
   throw new Error("BOT_TOKEN must be provided!");
 }
 
-export const bot = new Telegraf<Context>(token);
+export const bot = new TelegramBot(token, { polling: true });
 
 import "./commands";
-
-bot.launch();
-
-process.once("SIGINT", () => bot.stop("SIGINT"));
-process.once("SIGTERM", () => bot.stop("SIGTERM"));

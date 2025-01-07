@@ -40,6 +40,8 @@ app.use("/", (_, res) => {
   );
 });
 
+app.use("/auth", require("./server/routes/auth"));
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

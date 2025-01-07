@@ -1,9 +1,8 @@
+import  TelegramBot  from 'node-telegram-bot-api';
 import { bot } from "../bot";
-import { helpCommand } from "./help";
-import { newBot } from "./newBot";
 import { startCommand } from "./start";
 
 
-bot.start(startCommand);
-bot.command("new", newBot);
-bot.help(helpCommand)
+bot.onText(/\/start/, (msg: TelegramBot.Message) => {
+  startCommand(bot, msg);
+});

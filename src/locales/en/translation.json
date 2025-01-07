@@ -2,7 +2,8 @@
   "welcome": {
     "message": "Welcome to Habeshops, {{user_name}}! 🎉\n _'Create, customize, and monetize your own Telegram bots with ease.'_\n\nHere’s what you can do:\n\n- 🤖 **Create Your Bot**: Generate a fully functional bot by simply providing your BotFather token.\n- 🎨 **Customize Your Bot**: Tailor your bot's features and appearance to fit your unique needs.\n- 💰 **Monetize Your Bots**: Sell your bots to others, accept payments, and access analytics to track your success.\n- 📊 **Manage Everything**: Use our intuitive admin interface to control your bots and monitor performance.\n\nLet’s get started and bring your ideas to life! If you need any help, {{support_address}} is here to assist you. 🌟",
     "bot": "⚠️ Sorry, we can't proceed with your request as it appears you're a bot. Habeshops services are designed for human users. If you think this is a mistake, please contact {{support_address}}.",
-    "banned": "⚠️ Sorry, you're not allowed to use Habeshops services. If you think this is a mistake, please contact {{support_address}}."
+    "banned": "⚠️ Sorry, you're not allowed to use Habeshops services. If you think this is a mistake, please contact {{support_address}}.",
+    "welcomeBack": "Welcome back, {{user_name}}! 🎉\n\nLet's continue where you left off. If you need any help, {{support_address}} is here to assist you. 🌟" 
   },
   "help": {
     "message": "Need help? 🤔\n\n- 📚 **Documentation**: Check out our [documentation](https://habeshops.com/docs) for detailed guides and tutorials.\n- 📧 **Contact Support**: Reach out to our support team at {{support_address}} for assistance.\n- 🚀 **Get Started**: Start building your bot by providing your BotFather token."
