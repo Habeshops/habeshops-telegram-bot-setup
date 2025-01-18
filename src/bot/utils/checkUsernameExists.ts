@@ -9,7 +9,7 @@ const existingUsersCache: Set<string> = new Set();
  * @param {string} username - The username to check.
  * @returns {Promise<boolean>} - Returns true if the username exists, false otherwise.
  */
-export const checkUsernameExisits = async (
+export const checkUsernameExists = async (
   backend: string,
   username: string
 ): Promise<boolean> => {

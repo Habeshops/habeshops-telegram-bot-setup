@@ -1,3 +1,5 @@
+export { generateHashedPassword } from './generateHashedPassword';
 export { messageParser } from "./messageParser";
-export { checkUsernameExisits } from "./checkUsernameExisits";
+export { checkUsernameExists } from "./checkUsernameExists";
 export { checkIfTheUserIsBanned } from "./checkIfTheUserIsBanned";
+export { userChecker } from "./userChecker";
