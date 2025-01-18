@@ -1,8 +1,8 @@
 import express from "express";
-import { authenticateUser, checkUser, isBanned } from "../controllers";
+import { registerUser } from "../controllers";
 
 const router = express.Router();
 
-router.post("/authenticate", authenticateUser);
+router.post("/register", registerUser);
 
 module.exports = router;

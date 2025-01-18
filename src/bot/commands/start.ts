@@ -13,6 +13,29 @@ const supportAddress = process.env.SUPPORT_ADDRESS || "support@habeshops.com";
 const photoURL =
   "https://i.ibb.co/WHJ6TzJ/Leonardo-Phoenix-10-Create-a-vibrant-advertisement-for-Habesho-3.jpg";
 
+const inline_buttons = [
+  [
+    {
+      text: "🛍️ New Shop",
+      callback_data: "new_shop",
+    },
+    {
+      text: "📂 My Shops",
+      callback_data: "my_shops",
+    },
+  ],
+  [
+    {
+      text: "🌐 Language",
+      callback_data: "language",
+    },
+    {
+      text: "❓ Help",
+      callback_data: "help",
+    },
+  ],
+];
+
 export const startCommand = async (bot: TelegramBot, msg: Message) => {
   if (msg.from?.is_bot) {
     const rejectionMessage = i18next.t("welcome.bot", {
@@ -22,7 +45,7 @@ export const startCommand = async (bot: TelegramBot, msg: Message) => {
     return await bot.sendMessage(msg.chat.id, rejectionMessage);
   } else if (
     msg.from?.username &&
-    !(await checkIfTheUserIsBanned(backend, msg.from.username))
+    (await checkIfTheUserIsBanned(backend, msg.from.username))
   ) {
     const rejectionMessage = i18next.t("welcome.banned", {
       lng: msg.from?.language_code || defaultLang,
@@ -30,17 +53,10 @@ export const startCommand = async (bot: TelegramBot, msg: Message) => {
     });
     return await bot.sendMessage(msg.chat.id, rejectionMessage);
   } else if (
-    msg.from?.username &&
-    (await checkUsernameExisits(backend, msg.from.username))
+    !msg.from?.username ||
+    (await !checkUsernameExisits(backend, msg.from.username))
   ) {
-    const welcomeMessage = i18next.t("welcome.welcomeBack", {
-      lng: msg.from?.language_code || defaultLang,
-      support_address: supportAddress,
-    });
-    return await bot.sendPhoto(msg.chat.id, photoURL, {
-      caption: messageParser(welcomeMessage),
-      parse_mode: "MarkdownV2",
-    });
+    
   }
 
   const welcomeMessage = i18next.t("welcome.message", {
@@ -52,5 +68,9 @@ export const startCommand = async (bot: TelegramBot, msg: Message) => {
   return await bot.sendPhoto(msg.chat.id, photoURL, {
     caption: messageParser(welcomeMessage),
     parse_mode: "MarkdownV2",
+    reply_markup: {
+      inline_keyboard: inline_buttons,
+      remove_keyboard: true,
+    },
   });
 };
