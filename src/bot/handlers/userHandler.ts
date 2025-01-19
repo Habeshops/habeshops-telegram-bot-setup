@@ -5,7 +5,7 @@ import {
   checkUsernameExists,
   checkIfTheUserIsBanned,
   generateHashedPassword,
-} from "./";
+} from "../utils";
 import { registerUser } from "../../server/controllers";
 
 const defaultLang = process.env.DEFAULT_LANG || "en";
@@ -32,7 +32,6 @@ const register = async (msg: Message) => {
       msg.from?.username as string
     );
 
-    
     const req = {
       body: {
         username: msg.from?.username as string,
@@ -41,7 +40,7 @@ const register = async (msg: Message) => {
         language_code: msg.from?.language_code || "en",
         password,
         timezone: "UTC",
-        signup_source: 'Habeshop official telegram bot setup',
+        signup_source: "Habeshop official telegram bot setup",
       },
     } as any;
 
@@ -56,7 +55,6 @@ const register = async (msg: Message) => {
     };
 
     await registerUser(req, res, next);
-
   } catch (error) {
     if (error instanceof Error) {
       console.error("Error registering user:", error.message);
@@ -66,11 +64,11 @@ const register = async (msg: Message) => {
   }
 };
 
-export const userChecker = async (bot: TelegramBot, msg: Message) => {
+export const userHandler = async (bot: TelegramBot, msg: Message): Promise<boolean> => {
   try {
     if (msg.from?.is_bot) {
       await sendRejectionMessage(bot, msg, "welcome.bot");
-      return;
+      return false;
     }
 
     if (
@@ -78,17 +76,20 @@ export const userChecker = async (bot: TelegramBot, msg: Message) => {
       (await checkIfTheUserIsBanned(backend, msg.from.username))
     ) {
       await sendRejectionMessage(bot, msg, "welcome.banned");
-      return;
+      return false;
     }
 
     if (
-      !msg.from?.username ||
+      msg.from?.username &&
       !(await checkUsernameExists(backend, msg.from.username))
     ) {
       await register(msg);
+      return true
     }
+    return true;
   } catch (error) {
     console.error("Error checking user:", error);
     await sendRejectionMessage(bot, msg, "welcome.error");
+    return false;
   }
 };

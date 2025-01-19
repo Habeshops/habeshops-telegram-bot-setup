@@ -1,9 +1,7 @@
 import TelegramBot, { Message } from "node-telegram-bot-api";
 import i18next from "i18next";
-import {
-  messageParser,
-  userChecker,
-} from "../utils";
+import { messageParser } from "../utils";
+import { userHandler } from "../handlers";
 
 const defaultLang = process.env.DEFAULT_LANG || "en";
 const supportAddress = process.env.SUPPORT_ADDRESS || "support@habeshops.com";
@@ -34,19 +32,20 @@ const inline_buttons = [
 ];
 
 export const startCommand = async (bot: TelegramBot, msg: Message) => {
-  userChecker(bot, msg);
-  const welcomeMessage = i18next.t("welcome.message", {
-    lng: msg.from?.language_code || defaultLang,
-    user_name: msg.from?.username || msg.from?.first_name || "New User",
-    support_address: supportAddress,
-  });
+  if (await userHandler(bot, msg)) {
+    const welcomeMessage = i18next.t("welcome.message", {
+      lng: msg.from?.language_code || defaultLang,
+      user_name: msg.from?.username || msg.from?.first_name || "New User",
+      support_address: supportAddress,
+    });
 
-  return await bot.sendPhoto(msg.chat.id, photoURL, {
-    caption: messageParser(welcomeMessage),
-    parse_mode: "MarkdownV2",
-    reply_markup: {
-      inline_keyboard: inline_buttons,
-      remove_keyboard: true,
-    },
-  });
+    return await bot.sendPhoto(msg.chat.id, photoURL, {
+      caption: messageParser(welcomeMessage),
+      parse_mode: "MarkdownV2",
+      reply_markup: {
+        inline_keyboard: inline_buttons,
+        remove_keyboard: true,
+      },
+    });
+  }
 };
