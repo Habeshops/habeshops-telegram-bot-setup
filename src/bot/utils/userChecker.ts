@@ -6,6 +6,7 @@ import {
   checkIfTheUserIsBanned,
   generateHashedPassword,
 } from "./";
+import { registerUser } from "../../server/controllers";
 
 const defaultLang = process.env.DEFAULT_LANG || "en";
 const self = process.env.PROJECT_URL as string;
@@ -31,15 +32,37 @@ const register = async (msg: Message) => {
       msg.from?.username as string
     );
 
-    await axios.post(`${self}/register`, {
-      username: msg.from?.username as string,
-      first_name: msg.from?.first_name as string,
-      last_name: msg.from?.last_name as string,
-      language_code: msg.from?.language_code as string,
-      password,
-    });
+    
+    const req = {
+      body: {
+        username: msg.from?.username as string,
+        first_name: msg.from?.first_name || "",
+        last_name: msg.from?.last_name || "",
+        language_code: msg.from?.language_code || "en",
+        password,
+        timezone: "UTC",
+        signup_source: 'Habeshop official telegram bot setup',
+      },
+    } as any;
+
+    const res = {
+      json: (user: any) => user,
+    } as any;
+
+    const next = (error: any) => {
+      if (error) {
+        throw error;
+      }
+    };
+
+    await registerUser(req, res, next);
+
   } catch (error) {
-    console.error("Error registering user:", error);
+    if (error instanceof Error) {
+      console.error("Error registering user:", error.message);
+    } else {
+      console.error("Error registering user:", error);
+    }
   }
 };
 

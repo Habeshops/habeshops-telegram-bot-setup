@@ -2,8 +2,6 @@ import TelegramBot, { Message } from "node-telegram-bot-api";
 import i18next from "i18next";
 import {
   messageParser,
-  checkUsernameExisits,
-  checkIfTheUserIsBanned,
   userChecker,
 } from "../utils";
 
